@@ -1769,8 +1769,8 @@ MonoBehaviour:
   blobPrefab: {fileID: 3733285418992755176, guid: ce5d2fc1b371f6b42a4f4245aea3240c,
     type: 3}
   blobDirectionSpread: 25
-  minSpawnDelay: 0.1
-  maxSpawnDelay: 0.2
+  minSpawnDelay: 0.3
+  maxSpawnDelay: 0.5
   colorsToSpawn:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
@@ -1853,10 +1853,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1041902675957173474, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041902675957173474, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512723568778828574, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512723568778828574, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512723568778828574, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4201699041955358137, guid: b2b443152ee85364cb79b6fd2b4ff396,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461137912819014715, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_MaxJumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461137912819014715, guid: b2b443152ee85364cb79b6fd2b4ff396,
+        type: 3}
+      propertyPath: m_TimeToJumpApex
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b443152ee85364cb79b6fd2b4ff396, type: 3}
@@ -2036,3 +2071,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1898878825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898878817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2014e08368e746588f954f62bebc04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1898878826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898878817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292474f55b9444f30b1705a7dda1749b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

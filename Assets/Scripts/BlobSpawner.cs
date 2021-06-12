@@ -11,6 +11,12 @@ public class BlobSpawner : MonoBehaviour {
     [SerializeField] float maxSpawnDelay;
     [SerializeField] Color[] colorsToSpawn;
 
+    public Color[] ColorsToSpawn
+    {
+        get => colorsToSpawn;
+        set => colorsToSpawn = value;
+    }
+    
     float minX, minY, maxX, maxY;
 
     private void Start() {
