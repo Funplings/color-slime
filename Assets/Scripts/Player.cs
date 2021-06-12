@@ -73,6 +73,7 @@ public class Player : MonoBehaviour {
             if (m_Controller.m_Collisions.below || m_RemainingCoyoteTime > 0) {
                 m_Jumped = true;
                 m_Velocity.y = m_MaxJumpVelocity;
+                AudioManager._instance.Play("Jump");
             }
         } else {
             m_Velocity.y = Mathf.Min(m_Velocity.y, m_MinJumpVelocity);
