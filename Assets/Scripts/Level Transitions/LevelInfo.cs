@@ -28,7 +28,6 @@ public class LevelInfo
     public void CompleteColor(Color color, Dictionary<Color, int> ratios)
     {
         colorDatas.Add(new ColorData(color, ratios));
-        Debug.Log(colorDatas.Count + ", " + color);
     }
 
 }

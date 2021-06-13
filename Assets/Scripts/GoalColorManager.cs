@@ -37,7 +37,6 @@ public class GoalColorManager : MonoBehaviour
     private void Start()
     {
         nextColorCanvas.enabled = false; 
-        Debug.Log(blobSpawner);
         slimeColorAbsorb = FindObjectOfType<ColorAbsorption>();
         GenerateGoalColor();
     }
@@ -50,6 +49,8 @@ public class GoalColorManager : MonoBehaviour
         }
         currRGBRatios = goalColorDict;
         currGoalColor =  ColorUtils.AverageColors(goalColorDict);
+
+        Debug.Log("Current goal color: " + currGoalColor);
         UpdateGoalColorImage();
     }
 
@@ -75,6 +76,10 @@ public class GoalColorManager : MonoBehaviour
         if (colorMatchPercentageText != null) {
             float matchPercentage = ColorUtils.CompareColors(goalColorImage.color, slimeColorImage.color);
             colorMatchPercentageText.text = string.Format("{0}%", (100 * matchPercentage).ToString("F2"));
+
+            Debug.Log(goalColorImage.color);
+            Debug.Log(slimeColorImage.color);
+
             if (matchPercentage >= percentCutoff)
             {
                 StartCoroutine(AdvanceToNextColor());
@@ -90,7 +95,6 @@ public class GoalColorManager : MonoBehaviour
     IEnumerator AdvanceToNextColor()
     {
         nextColorCanvas.enabled = true;
-        Debug.Log(blobSpawner);
         blobSpawner.gameObject.SetActive(false);
         DestroyAllBlobs();
         yield return new WaitForSeconds(colorTransitionDelay);
@@ -99,7 +103,6 @@ public class GoalColorManager : MonoBehaviour
         slimeColorAbsorb.Reset();
         GenerateGoalColor();
         yield return new WaitForSeconds(colorTransitionDelay);
-        Debug.Log(blobSpawner.gameObject);
         blobSpawner.gameObject.SetActive(true);
         blobSpawner.StartSpawnBlob();
         yield return null;

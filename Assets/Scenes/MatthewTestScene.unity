@@ -2133,6 +2133,10 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
+  spawnAbove: 1
+  spawnRight: 1
+  spawnBelow: 0
+  spawnLeft: 0
 --- !u!4 &417893481
 Transform:
   m_ObjectHideFlags: 0
