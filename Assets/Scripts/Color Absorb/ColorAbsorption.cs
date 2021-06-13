@@ -35,7 +35,11 @@ public class ColorAbsorption : MonoBehaviour
         if (goalColorManagerObject != null) goalColorManager = goalColorManagerObject.GetComponent<GoalColorManager>();
 
         // sr = GetComponent<SpriteRenderer>();
-        Reset();
+        Color[] levelColors = blobSpawner.ColorsToSpawn;
+        score = new Dictionary<Color, int>();
+        foreach (Color c in levelColors) {
+            score.Add(c, 0);
+        }
     }
 
     void UpdateCurrentColor()
