@@ -16,7 +16,7 @@ public class ColorAbsorption : MonoBehaviour
 
     #region Cached Variables
 
-    private SpriteRenderer sr;
+    [SerializeField] private SpriteRenderer sr;
     private BlobSpawner blobSpawner;
     
     #endregion
@@ -28,7 +28,7 @@ public class ColorAbsorption : MonoBehaviour
         GameObject goalColorManagerObject = GameObject.FindGameObjectWithTag("Goal Color Manager");
         if (goalColorManagerObject != null) goalColorManager = goalColorManagerObject.GetComponent<GoalColorManager>();
 
-        sr = GetComponent<SpriteRenderer>();
+        // sr = GetComponent<SpriteRenderer>();
         blobSpawner = FindObjectOfType<BlobSpawner>();
         Color[] levelColors = blobSpawner.ColorsToSpawn;
         score = new Dictionary<Color, int>();
