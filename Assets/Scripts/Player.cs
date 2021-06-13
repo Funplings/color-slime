@@ -64,7 +64,22 @@ public class Player : MonoBehaviour {
     }
 
     public void OnMove(InputValue value) {
-        m_TargetVelocityX = m_MoveSpeed * value.Get<float>();
+        int dir = (int) value.Get<float>();
+        m_TargetVelocityX = m_MoveSpeed * dir;
+
+        // Face direction
+        if (dir == 1) {
+            // right
+            Vector3 localScale = transform.localScale;
+            localScale.x = 1f;
+            transform.localScale = localScale;
+        }
+        else if (dir == -1) {
+            // left
+            Vector3 localScale = transform.localScale;
+            localScale.x = -1f;
+            transform.localScale = localScale;
+        }
     }
 
     public void OnJump(InputValue value) {
