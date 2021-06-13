@@ -10,6 +10,7 @@ public class ColorAbsorption : MonoBehaviour
     #region Private Variables
 
     private Dictionary<Color, int> score;
+    private GoalColorManager goalColorManager;
     
     #endregion
 
@@ -23,6 +24,10 @@ public class ColorAbsorption : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set goal color manager
+        GameObject goalColorManagerObject = GameObject.FindGameObjectWithTag("Goal Color Manager");
+        if (goalColorManagerObject != null) goalColorManager = goalColorManagerObject.GetComponent<GoalColorManager>();
+
         sr = GetComponent<SpriteRenderer>();
         blobSpawner = FindObjectOfType<BlobSpawner>();
         Color[] levelColors = blobSpawner.ColorsToSpawn;
@@ -32,13 +37,23 @@ public class ColorAbsorption : MonoBehaviour
             score.Add(c, 0);   
         }
         UpdateCurrentColor();
+        UpdateSlimeColorImage();
     }
 
     void UpdateCurrentColor()
     {
         Color c = ColorUtils.AverageColors(score);
         sr.color = c;
+        UpdateSlimeColorImage();
+    }
 
+    void UpdateSlimeColorImage() {
+        // Update slime color image, if possible
+        if (goalColorManager != null) {
+            goalColorManager.UpdateSlimeColorImage(sr.color);
+        } else {
+            Debug.LogWarning("No goal color manager");
+        }
     }
 
     public void Absorb(Color color)

@@ -67,6 +67,11 @@ public class ColorUtils
         return c;
         
     }
+
+    public static float CompareColors(Color c1, Color c2) {
+        float dist = Mathf.Sqrt(Mathf.Pow(c1.r - c2.r, 2) + Mathf.Pow(c1.g - c2.g, 2) + Mathf.Pow(c1.b - c2.b, 2));
+        return (1.0f - dist / 3.0f);
+    }
     
     
     
