@@ -30,4 +30,9 @@ public class LevelInfo
         colorDatas.Add(new ColorData(color, ratios));
     }
 
+    public int NumColorsTotal()
+    {
+        return this.colorDatas.Count;
+    }
+
 }

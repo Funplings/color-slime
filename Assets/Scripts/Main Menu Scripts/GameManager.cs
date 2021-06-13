@@ -8,12 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
     /* instantiate this whenever you load a new level,
      instantiated here for debugging */
-    private LevelInfo currLevelInfo = new LevelInfo();
-    public LevelInfo CurrLevelInfo
-    {
-        get => currLevelInfo;
-        set => currLevelInfo = value;
-    }
 
     #region Unity_functions
     private void Awake()
@@ -36,8 +30,7 @@ public class GameManager : MonoBehaviour
     }
     public void Play()
     {
-        currLevelInfo = new LevelInfo();
-        //SceneManager.LoadScene("CHANGE"); //very specific names! make sure they match in unity :D
+        SceneManager.LoadScene("CHANGE"); //very specific names! make sure they match in unity :D
     }
     public void Credits()
     {

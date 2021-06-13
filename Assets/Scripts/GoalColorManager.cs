@@ -9,6 +9,7 @@ public class GoalColorManager : MonoBehaviour
     Color currGoalColor;
     private Dictionary<Color, int> currRGBRatios;
     private ColorAbsorption slimeColorAbsorb;
+    private LevelManager levelManager;
     
     [SerializeField] 
     Image goalColorImage;
@@ -32,6 +33,7 @@ public class GoalColorManager : MonoBehaviour
     private void Awake()
     {
         blobSpawner = GameObject.FindGameObjectWithTag("Blob Spawner").GetComponent<BlobSpawner>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
     
     private void Start()
@@ -99,7 +101,7 @@ public class GoalColorManager : MonoBehaviour
         DestroyAllBlobs();
         yield return new WaitForSeconds(colorTransitionDelay);
         nextColorCanvas.enabled = false;
-        GameManager.Instance.CurrLevelInfo.CompleteColor(currGoalColor, currRGBRatios);
+        levelManager.AddColorCompleted(currGoalColor, currRGBRatios);
         slimeColorAbsorb.Reset();
         GenerateGoalColor();
         yield return new WaitForSeconds(colorTransitionDelay);

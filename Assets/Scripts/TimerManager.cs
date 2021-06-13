@@ -11,6 +11,7 @@ public class TimerManager : MonoBehaviour {
     GameObject player;
     float timeRemaining;
     bool levelOver = false;
+    private LevelManager levelManager;
 
     private void Awake() {
         timeRemaining = totalTime;
@@ -18,6 +19,7 @@ public class TimerManager : MonoBehaviour {
         // Get: blobSpwaner, player
         player = GameObject.FindGameObjectWithTag("Player");
         blobSpawner = GameObject.FindGameObjectWithTag("Blob Spawner");
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
     }
 
     private void Update() {
@@ -44,11 +46,11 @@ public class TimerManager : MonoBehaviour {
 
     void EndLevel() {
         // Turn on level complete darkened panel
-        if (levelCompletePanel != null) {
-            levelCompletePanel.SetActive(true);
-        } else {
-            Debug.LogWarning("No level complete panel");
-        }
+        // if (levelCompletePanel != null) {
+        //     levelCompletePanel.SetActive(true);
+        // } else {
+        //     Debug.LogWarning("No level complete panel");
+        // }
 
         // Stop blob spawning
         if (blobSpawner != null) {
@@ -66,5 +68,7 @@ public class TimerManager : MonoBehaviour {
             Debug.LogWarning("No player");
         }
 
+        levelManager.TimeUp();        
+        
     }
 }
