@@ -68,4 +68,8 @@ public class BlobSpawner : MonoBehaviour {
         // Start coroutine for next blob spawn
         StartCoroutine("spawnBlob", Random.Range(minSpawnDelay, maxSpawnDelay));
     }
+
+    public Color[] getColorsToSpawn() {
+        return colorsToSpawn;
+    }
 }

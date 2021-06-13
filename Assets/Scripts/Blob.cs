@@ -27,4 +27,12 @@ public class Blob : MonoBehaviour
     public Color GetColor() {
         return spriteRenderer.color;
     }
+    public void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            other.gameObject.GetComponent<ColorAbsorption>().Absorb(spriteRenderer.color);
+            Destroy(gameObject);
+        } else if (other.CompareTag("Blob Destroyer")) {
+            Destroy(gameObject);
+        }
+    }
 }
