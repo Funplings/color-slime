@@ -8,6 +8,7 @@ TagManager:
   - Blob Spawner
   - Blob Destroyer
   - Goal Color Manager
+  - Eraser
   layers:
   - Default
   - TransparentFX
