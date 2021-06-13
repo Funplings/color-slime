@@ -30,14 +30,7 @@ public class ColorAbsorption : MonoBehaviour
 
         sr = GetComponent<SpriteRenderer>();
         blobSpawner = FindObjectOfType<BlobSpawner>();
-        Color[] levelColors = blobSpawner.ColorsToSpawn;
-        score = new Dictionary<Color, int>();
-        foreach (Color c in levelColors)
-        {
-            score.Add(c, 0);   
-        }
-        UpdateCurrentColor();
-        UpdateSlimeColorImage();
+        Reset();
     }
 
     void UpdateCurrentColor()
@@ -60,6 +53,18 @@ public class ColorAbsorption : MonoBehaviour
     {
         score[color] += 1;
         UpdateCurrentColor();
+    }
+
+    public void Reset()
+    {
+        Color[] levelColors = blobSpawner.ColorsToSpawn;
+        score = new Dictionary<Color, int>();
+        foreach (Color c in levelColors)
+        {
+            score.Add(c, 0);
+        }
+        UpdateCurrentColor();
+        UpdateSlimeColorImage();
     }
     
 }
