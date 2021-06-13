@@ -5,12 +5,8 @@ using UnityEngine;
 public class Blob : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer baseSpriteRenderer;
     Vector3 moveDirection = Vector3.zero;
-
-    private void Awake() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     private void Update() {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
@@ -21,15 +17,15 @@ public class Blob : MonoBehaviour
     }
 
     public void SetColor(Color color) {
-        spriteRenderer.color = color;
+        baseSpriteRenderer.color = color;
     }
 
     public Color GetColor() {
-        return spriteRenderer.color;
+        return baseSpriteRenderer.color;
     }
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            other.gameObject.GetComponent<ColorAbsorption>().Absorb(spriteRenderer.color);
+            other.gameObject.GetComponent<ColorAbsorption>().Absorb(baseSpriteRenderer.color);
             Destroy(gameObject);
         } else if (other.CompareTag("Blob Destroyer")) {
             Destroy(gameObject);

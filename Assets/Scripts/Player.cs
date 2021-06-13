@@ -79,4 +79,8 @@ public class Player : MonoBehaviour {
             m_Velocity.y = Mathf.Min(m_Velocity.y, m_MinJumpVelocity);
         }
     }
+
+    public void LevelOver() {
+        Destroy(gameObject);
+    }
 }
