@@ -36,4 +36,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Credits"); //very specific names! make sure they match in unity :D
     }
     #endregion
+
+    #region button_functions
+    public void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    #endregion
 }
