@@ -32,12 +32,12 @@ public class GameManager : MonoBehaviour
     #region Scene_transitions
     public void Main()
     {
-        SceneManager.LoadScene("MainMenu"); //very specific names! make sure they match in unity :D
+        SceneManager.LoadScene("Main Menu"); //very specific names! make sure they match in unity :D
     }
     public void Play()
     {
         currLevelInfo = new LevelInfo();
-        SceneManager.LoadScene("CHANGE"); //very specific names! make sure they match in unity :D
+        //SceneManager.LoadScene("CHANGE"); //very specific names! make sure they match in unity :D
     }
     public void Credits()
     {

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FINAL SCENES/Main Menu.unity
     guid: 9556c8c6810e54e208951c1bad8abe54
   - enabled: 1
+    path: Assets/Scenes/FINAL SCENES/Credits.unity
+    guid: de563d09507294cc2b8051759054a09a
+  - enabled: 1
     path: Assets/Scenes/FINAL SCENES/Level 1.unity
     guid: ceb2d690660d64c4fb76f4ec50a81478
   - enabled: 1

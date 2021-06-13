@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
     float m_VelocityXSmoothing;
     float m_TargetVelocityX;
     float m_RemainingCoyoteTime;
+    Animator m_Animator;
 
     Controller2D m_Controller;
 
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour {
         m_MinJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(m_Gravity) * m_MinJumpHeight);
 
         m_Controller = GetComponent<Controller2D>();
+        m_Animator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour {
         // Keep Y velocity 0 if on the ground or if touched the ceiling
         if ((m_Controller.m_Collisions.above || m_Controller.m_Collisions.below) && !m_Jumped) {
             m_Velocity.y = 0;
+            m_Animator.SetBool("isJumping", false);
         }
 
         // Reset Coyote time if on the ground; otherwise, decrease it
@@ -53,14 +56,18 @@ public class Player : MonoBehaviour {
         if (m_Jumped) {
             m_RemainingCoyoteTime = 0;
             m_Jumped = false;
-
         }
-
+        
         // Gravity
         m_Velocity.y += m_Gravity * Time.deltaTime;
 
         // Move
         m_Controller.Move(m_Velocity * Time.deltaTime);
+        m_Animator.SetBool("isMoving", false);
+
+        if (m_Velocity.x == 0 && m_Velocity.y == 0) {
+            m_Animator.SetBool("isMoving", true);
+        }
     }
 
     public void OnMove(InputValue value) {
@@ -89,6 +96,7 @@ public class Player : MonoBehaviour {
                 m_Jumped = true;
                 m_Velocity.y = m_MaxJumpVelocity;
                 AudioManager._instance.Play("Jump");
+                m_Animator.SetBool("isJumping", true);
             }
         } else {
             m_Velocity.y = Mathf.Min(m_Velocity.y, m_MinJumpVelocity);
