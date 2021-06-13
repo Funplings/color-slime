@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Blob
+  - Blob Spawner
+  - Blob Destroyer
+  - Goal Color Manager
   layers:
   - Default
   - TransparentFX
