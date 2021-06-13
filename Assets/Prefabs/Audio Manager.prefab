@@ -47,6 +47,12 @@ MonoBehaviour:
   - name: Jump
     clip: {fileID: 8300000, guid: 26e06fd5f88c0e8448c98007bcc8359f, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 1.2
+    source: {fileID: 0}
+    loop: 0
+  - name: Absorb
+    clip: {fileID: 8300000, guid: 38155094f4abaf74dab471f42229a609, type: 3}
+    volume: 1
+    pitch: 1.2
     source: {fileID: 0}
     loop: 0

@@ -11,7 +11,14 @@ public class BlobSpawner : MonoBehaviour {
     [SerializeField] float maxSpawnDelay;
     [SerializeField] Color[] colorsToSpawn;
 
+    [SerializeField] bool spawnAbove;
+    [SerializeField] bool spawnRight;
+    [SerializeField] bool spawnBelow;
+    [SerializeField] bool spawnLeft;
+    List<int> spawnDirections;
+
     bool timesUp = false;
+    int colorIndex = 0;
 
     public Color[] ColorsToSpawn
     {
@@ -22,10 +29,19 @@ public class BlobSpawner : MonoBehaviour {
     float minX, minY, maxX, maxY;
 
     private void Start() {
+        // Get min, max x, y positions
         minX = topLeft.transform.position.x;
         minY = bottomRight.transform.position.y;
         maxX = bottomRight.transform.position.x;
         maxY = topLeft.transform.position.y;
+
+        // Get spawn directions
+        spawnDirections = new List<int>();
+        if (spawnAbove) spawnDirections.Add(0);
+        if (spawnRight) spawnDirections.Add(1);
+        if (spawnBelow) spawnDirections.Add(2);
+        if (spawnLeft) spawnDirections.Add(3);
+
         StartCoroutine("spawnBlob", 0);
     }
 
@@ -42,7 +58,8 @@ public class BlobSpawner : MonoBehaviour {
             Quaternion blobDirectionRotation = Quaternion.Euler(0, 0, Random.Range(-0.5f * blobDirectionSpread, 0.5f * blobDirectionSpread));
 
             // Choose direction (0 = above, 1 = right, 2 = down, 3 = left)
-            int side = Random.Range(0, 4);
+            int side = spawnDirections[Random.Range(0, spawnDirections.Count)];
+
             switch (side) {
                 case 0:
                     blobPosition.x = Random.Range(minX, maxX);
@@ -67,8 +84,11 @@ public class BlobSpawner : MonoBehaviour {
             }
 
             // Instantiate blob and set direction and color
-            int i = Random.Range(0, colorsToSpawn.Length);
-            Color color = colorsToSpawn[Random.Range(0, colorsToSpawn.Length)];
+            // int i = Random.Range(0, colorsToSpawn.Length);
+            // Color color = colorsToSpawn[Random.Range(0, colorsToSpawn.Length)];
+            Color color = colorsToSpawn[colorIndex];
+            colorIndex = (colorIndex + 1) % colorsToSpawn.Length;
+
             GameObject blob = Instantiate(blobPrefab, blobPosition, Quaternion.identity);
             blob.GetComponent<Blob>().SetDirection(blobDirectionRotation * blobDirection);
             blob.GetComponent<Blob>().SetColor(color);
