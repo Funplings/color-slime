@@ -85,7 +85,7 @@ public class GoalColorManager : MonoBehaviour
     IEnumerator AdvanceToNextColor()
     {
         nextColorCanvas.enabled = true;
-        blobSpawner.enabled = false;
+        blobSpawner.gameObject.SetActive(false);
         DestroyAllBlobs();
         yield return new WaitForSeconds(colorTransitionDelay);
         nextColorCanvas.enabled = false;
@@ -93,7 +93,7 @@ public class GoalColorManager : MonoBehaviour
         slimeColorAbsorb.Reset();
         GenerateGoalColor();
         yield return new WaitForSeconds(colorTransitionDelay);
-        blobSpawner.enabled = true;
+        blobSpawner.gameObject.SetActive(true);
         yield return null;
     }
 
