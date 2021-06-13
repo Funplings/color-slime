@@ -3067,7 +3067,7 @@ MonoBehaviour:
   nextColorCanvas: {fileID: 40865377}
   percentCutoff: 0.838
   colorMatchPercentageText: {fileID: 939092570}
-  colorTransitionDelay: 1
+  colorTransitionDelay: 2
 --- !u!4 &1327059098
 Transform:
   m_ObjectHideFlags: 0
