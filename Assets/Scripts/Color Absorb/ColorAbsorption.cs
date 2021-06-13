@@ -45,7 +45,11 @@ public class ColorAbsorption : MonoBehaviour
     void UpdateCurrentColor()
     {
         Color c = ColorUtils.AverageColors(score);
-        sr.color = c;
+        if (sr != null) {
+            sr.color = c;
+        } else {
+            return;
+        }
         UpdateSlimeColorImage();
     }
 
