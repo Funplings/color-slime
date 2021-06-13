@@ -28,11 +28,16 @@ public class GoalColorManager : MonoBehaviour
 
     [SerializeField] 
     private float colorTransitionDelay;
+
+    private void Awake()
+    {
+        blobSpawner = GameObject.FindGameObjectWithTag("Blob Spawner").GetComponent<BlobSpawner>();
+    }
     
     private void Start()
     {
-        nextColorCanvas.enabled = false;
-        blobSpawner = GameObject.FindGameObjectWithTag("Blob Spawner").GetComponent<BlobSpawner>();
+        nextColorCanvas.enabled = false; 
+        Debug.Log(blobSpawner);
         slimeColorAbsorb = FindObjectOfType<ColorAbsorption>();
         GenerateGoalColor();
     }
@@ -85,6 +90,7 @@ public class GoalColorManager : MonoBehaviour
     IEnumerator AdvanceToNextColor()
     {
         nextColorCanvas.enabled = true;
+        Debug.Log(blobSpawner);
         blobSpawner.gameObject.SetActive(false);
         DestroyAllBlobs();
         yield return new WaitForSeconds(colorTransitionDelay);
@@ -93,7 +99,9 @@ public class GoalColorManager : MonoBehaviour
         slimeColorAbsorb.Reset();
         GenerateGoalColor();
         yield return new WaitForSeconds(colorTransitionDelay);
+        Debug.Log(blobSpawner.gameObject);
         blobSpawner.gameObject.SetActive(true);
+        blobSpawner.StartSpawnBlob();
         yield return null;
     }
 

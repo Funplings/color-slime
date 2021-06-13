@@ -22,6 +22,12 @@ public class ColorAbsorption : MonoBehaviour
     #endregion
     
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        blobSpawner = FindObjectOfType<BlobSpawner>();
+    }
+
     void Start()
     {
         // Set goal color manager
@@ -29,7 +35,6 @@ public class ColorAbsorption : MonoBehaviour
         if (goalColorManagerObject != null) goalColorManager = goalColorManagerObject.GetComponent<GoalColorManager>();
 
         // sr = GetComponent<SpriteRenderer>();
-        blobSpawner = FindObjectOfType<BlobSpawner>();
         Reset();
     }
 
