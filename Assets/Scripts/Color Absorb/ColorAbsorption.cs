@@ -55,7 +55,7 @@ public class ColorAbsorption : MonoBehaviour
 
     void UpdateSlimeColorImage() {
         // Update slime color image, if possible
-        if (goalColorManager != null) {
+        if (goalColorManager != null && sr != null) {
             goalColorManager.UpdateSlimeColorImage(sr.color);
         } else {
             Debug.LogWarning("No goal color manager");
