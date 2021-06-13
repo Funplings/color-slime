@@ -2612,6 +2612,12 @@ RectTransform:
   m_AnchoredPosition: {x: -20, y: 95}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
+--- !u!212 &965307171 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5847566843485871401, guid: b2b443152ee85364cb79b6fd2b4ff396,
+    type: 3}
+  m_PrefabInstance: {fileID: 1108777652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1011635580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,6 +3502,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5440218394922466340, guid: 67264b14e7ecdf148821ec2edca139b2,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440218394922466340, guid: 67264b14e7ecdf148821ec2edca139b2,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 38155094f4abaf74dab471f42229a609, type: 3}
+    - target: {fileID: 5440218394922466340, guid: 67264b14e7ecdf148821ec2edca139b2,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: Absorb
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440218394922466340, guid: 67264b14e7ecdf148821ec2edca139b2,
+        type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440218394922466340, guid: 67264b14e7ecdf148821ec2edca139b2,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5440218394922466341, guid: 67264b14e7ecdf148821ec2edca139b2,
         type: 3}
       propertyPath: m_RootOrder
@@ -3667,6 +3698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292474f55b9444f30b1705a7dda1749b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 965307171}
 --- !u!1 &2142576725
 GameObject:
   m_ObjectHideFlags: 0

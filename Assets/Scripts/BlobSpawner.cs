@@ -29,6 +29,11 @@ public class BlobSpawner : MonoBehaviour {
         StartCoroutine("spawnBlob", 0);
     }
 
+    public void StartSpawnBlob()
+    {
+        StartCoroutine("spawnBlob", 0);
+    }
+
     IEnumerator spawnBlob(float timeToSpawn) {
         yield return new WaitForSeconds(timeToSpawn);
         if (!timesUp) {
