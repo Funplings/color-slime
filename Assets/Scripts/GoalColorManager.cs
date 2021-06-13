@@ -7,18 +7,33 @@ public class GoalColorManager : MonoBehaviour
 {
     BlobSpawner blobSpawner;
     Color currGoalColor;
-
-    [SerializeField]
+    private Dictionary<Color, int> currRGBRatios;
+    private ColorAbsorption slimeColorAbsorb;
+    
+    [SerializeField] 
     Image goalColorImage;
 
     [SerializeField]
     Image slimeColorImage;
 
+    [SerializeField] 
+    private Canvas nextColorCanvas;
+    
+    [SerializeField]
+    [Range(0.7f, 1f)]
+    private float percentCutoff;
+
     [SerializeField]
     Text colorMatchPercentageText;
 
-    private void Start() {
+    [SerializeField] 
+    private float colorTransitionDelay;
+    
+    private void Start()
+    {
+        nextColorCanvas.enabled = false;
         blobSpawner = GameObject.FindGameObjectWithTag("Blob Spawner").GetComponent<BlobSpawner>();
+        slimeColorAbsorb = FindObjectOfType<ColorAbsorption>();
         GenerateGoalColor();
     }
 
@@ -28,6 +43,7 @@ public class GoalColorManager : MonoBehaviour
         foreach (Color c in colors) {
             goalColorDict.Add(c, Random.Range(3, 15));
         }
+        currRGBRatios = goalColorDict;
         currGoalColor =  ColorUtils.AverageColors(goalColorDict);
         UpdateGoalColorImage();
     }
@@ -54,11 +70,41 @@ public class GoalColorManager : MonoBehaviour
         if (colorMatchPercentageText != null) {
             float matchPercentage = ColorUtils.CompareColors(goalColorImage.color, slimeColorImage.color);
             colorMatchPercentageText.text = string.Format("{0}%", (100 * matchPercentage).ToString("F2"));
+            if (matchPercentage >= percentCutoff)
+            {
+                StartCoroutine(AdvanceToNextColor());
+            }
         }
         else {
             Debug.LogWarning("No color match percentage text");
             UpdateColorMatchPercentage();
         }
-        
+
     }
+
+    IEnumerator AdvanceToNextColor()
+    {
+        nextColorCanvas.enabled = true;
+        blobSpawner.gameObject.SetActive(false);
+        DestroyAllBlobs();
+        yield return new WaitForSeconds(colorTransitionDelay);
+        nextColorCanvas.enabled = false;
+        GameManager.Instance.CurrLevelInfo.CompleteColor(currGoalColor, currRGBRatios);
+        slimeColorAbsorb.Reset();
+        GenerateGoalColor();
+        yield return new WaitForSeconds(colorTransitionDelay);
+        blobSpawner.gameObject.SetActive(true);
+        yield return null;
+    }
+
+    void DestroyAllBlobs()
+    {
+        GameObject[] blobs = GameObject.FindGameObjectsWithTag("Blob");
+        foreach (GameObject blob in blobs)
+        {
+            Destroy(blob);
+        }
+    }
+
+    
 }
