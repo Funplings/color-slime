@@ -10,6 +10,7 @@ public class GoalColorManager : MonoBehaviour
     private Dictionary<Color, int> currRGBRatios;
     private ColorAbsorption slimeColorAbsorb;
     private LevelManager levelManager;
+    private int colorsMatchedCount;
     
     [SerializeField] 
     Image goalColorImage;
@@ -27,6 +28,8 @@ public class GoalColorManager : MonoBehaviour
     [SerializeField]
     Text colorMatchPercentageText;
 
+    [SerializeField] private Text colorsMatched;
+
     [SerializeField] 
     private float colorTransitionDelay;
 
@@ -34,6 +37,8 @@ public class GoalColorManager : MonoBehaviour
     {
         blobSpawner = GameObject.FindGameObjectWithTag("Blob Spawner").GetComponent<BlobSpawner>();
         levelManager = FindObjectOfType<LevelManager>();
+        colorsMatchedCount = 0;
+        colorsMatched.text = "Colors Matched: " + colorsMatchedCount;
     }
     
     private void Start()
@@ -96,6 +101,8 @@ public class GoalColorManager : MonoBehaviour
 
     IEnumerator AdvanceToNextColor()
     {
+        colorsMatchedCount++;
+        colorsMatched.text = "Colors Matched: " + colorsMatchedCount;
         nextColorCanvas.enabled = true;
         blobSpawner.gameObject.SetActive(false);
         DestroyAllBlobs();

@@ -10,6 +10,8 @@ public class LevelCompleteScreen : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text numToPassText;
     [SerializeField] private RectTransform levelCompletePanel;
+    [SerializeField] private Image levelCompleteOverlay;
+    [SerializeField] private Image levelFailedOverlay;
     private Button nextLevelButton;
     private Button retryButton;
     private LevelManager levelManager;
@@ -28,8 +30,10 @@ public class LevelCompleteScreen : MonoBehaviour
         levelCompletePanel.gameObject.SetActive(true);
         nextLevelButton.gameObject.SetActive(passed);
         retryButton.gameObject.SetActive(!passed);
-        scoreText.text = levelInfo.NumColorsTotal().ToString() + " colors made";
-        numToPassText.text = levelManager.NumColorsToPass + " colors needed to pass";
+        levelCompleteOverlay.enabled = passed;
+        levelFailedOverlay.enabled = !passed;
+        scoreText.text = levelInfo.NumColorsTotal().ToString() + " colors";
+        numToPassText.text = levelManager.NumColorsToPass + " colors";
 
     }
 
